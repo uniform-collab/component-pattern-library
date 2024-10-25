@@ -7,6 +7,9 @@
   "search.exclude": {
     "node_modules": true
   },
+  "editor.codeActionsOnSave": {
+    "source.removeUnusedTypes": "never"
+  },
   "cSpell.words": [
     "acumin",
     "algoliasearch",

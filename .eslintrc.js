@@ -14,5 +14,6 @@ module.exports = {
       },
     ],
     'react/display-name': 'off',
+    '@typescript-eslint/no-inferrable-types': 'off',
   },
 };

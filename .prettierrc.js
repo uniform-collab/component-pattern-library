@@ -6,4 +6,6 @@ module.exports = {
   tabWidth: 2,
   arrowParens: 'avoid',
   endOfLine: 'auto',
+  removeUnusedImports: false,
+  removeUnusedTypes: false,
 };
