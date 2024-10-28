@@ -1,6 +1,30 @@
-import { CANVAS_PUBLISHED_STATE, CANVAS_DRAFT_STATE, RouteClient } from '@uniformdev/canvas';
+import {
+  CANVAS_PUBLISHED_STATE,
+  CANVAS_DRAFT_STATE,
+  RouteClient,
+  CanvasClient,
+  CategoryClient,
+} from '@uniformdev/canvas';
 import { ProjectMapClient } from '@uniformdev/project-map';
 
+export const getCategoryClient = () => {
+  const apiKey = process.env.UNIFORM_API_KEY;
+  const edgeApiHost = process.env.UNIFORM_CLI_BASE_EDGE_URL || 'https://uniform.global';
+  const projectId = process.env.UNIFORM_PROJECT_ID;
+
+  if (!apiKey) {
+    throw new Error('apiKey is not specified. CategoryClient cannot be instantiated: ' + apiKey);
+  }
+
+  if (!edgeApiHost) throw new Error('edgeApiHost is not specified. CategoryClient cannot be instantiated');
+
+  const client = new CategoryClient({
+    apiKey,
+    projectId,
+  });
+
+  return client;
+};
 export const getRouteClient = () => {
   const apiKey = process.env.UNIFORM_API_KEY;
   const edgeApiHost = process.env.UNIFORM_CLI_BASE_EDGE_URL || 'https://uniform.global';
@@ -22,6 +46,29 @@ export const getRouteClient = () => {
   });
 
   return client;
+};
+
+export const getCanvasClient = async () => {
+  const apiHost = process.env.UNIFORM_CLI_BASE_URL || 'https://uniform.app';
+  const edgeApiHost = process.env.UNIFORM_CLI_BASE_EDGE_URL || 'https://uniform.global';
+  const projectId = process.env.UNIFORM_PROJECT_ID;
+  const apiKey = process.env.UNIFORM_API_KEY;
+
+  if (!projectId) {
+    return null;
+  }
+
+  if (!apiKey) {
+    return null;
+  }
+
+  return new CanvasClient({
+    apiHost,
+    apiKey,
+    projectId,
+    edgeApiHost,
+    disableSWR: true,
+  });
 };
 
 export const getProjectMapClient = () => {
