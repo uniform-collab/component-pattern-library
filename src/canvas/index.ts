@@ -39,7 +39,12 @@ import './Review';
 import './Spacer';
 import './Testimonial';
 import './Video';
+import './ResponsiveContentBlock';
+import './SimpleContentBlock';
 
+export { default as SimpleContentBlock } from './SimpleContentBlock';
+
+export { default as ResponsiveContentBlock } from './ResponsiveContentBlock';
 export { default as Accordion } from './Accordion';
 
 export { default as AddToCart } from './AddToCart';

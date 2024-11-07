@@ -1,6 +1,10 @@
 {
   "project": {
     "pz": {},
-    "test": {}
+    "test": {
+      "test3": {},
+      "test1": {},
+      "test2": {}
+    }
   }
 }

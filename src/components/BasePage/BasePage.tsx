@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useCallback } from 'react';
+import { FC, PropsWithChildren, useCallback, useEffect } from 'react';
 import classNames from 'classnames';
 import {
   createUniformApiEnhancer,
@@ -12,6 +12,8 @@ import ThemeProvider from '../ThemeProvider';
 import { getGapClass, getMarginBottomClass, PaddingSize } from '../../utilities/styling';
 import { CHILDREN_CONTAINER_STYLES, COMMON_PADDING } from '../../hocs/withoutContainer';
 import { BasePageProps } from './';
+import { useSetViewportQuirk } from '@/hooks/useSetViewportQuirk';
+import { useUniformContext } from '@uniformdev/context-react';
 
 const PageContent: FC<Pick<BasePageProps, 'preview' | 'useUniformComposition' | 'providers' | 'styles'>> = ({
   useUniformComposition,
@@ -20,6 +22,18 @@ const PageContent: FC<Pick<BasePageProps, 'preview' | 'useUniformComposition' | 
   styles,
 }) => {
   const { data: composition } = useUniformCurrentComposition();
+
+  const { context } = useUniformContext({ throwOnMissingProvider: false });
+
+  useEffect(() => {
+    context?.update({
+      quirks: {
+        viewport: 'tablet',
+      },
+    });
+  }, []);
+
+  // useSetViewportQuirk();
 
   const gap = composition?.slots?.pageHeader?.[0]?.parameters?.syntheticGap?.value as PaddingSize | undefined;
 
