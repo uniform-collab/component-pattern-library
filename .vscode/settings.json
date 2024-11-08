@@ -8,8 +8,14 @@
     "node_modules": true
   },
   "editor.codeActionsOnSave": {
-    "source.removeUnusedTypes": "never"
+    "source.removeUnusedTypes": "never",
+    "source.organizeImports": "explicit"
   },
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.suggest.autoImports": true,
   "cSpell.words": [
     "acumin",
     "algoliasearch",

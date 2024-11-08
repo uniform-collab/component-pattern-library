@@ -1,4 +1,4 @@
-import { SimplifiedConditions, processConditions } from '@/utilities/simplifyConditions';
+import { SimplifiedConditions } from '@/utilities/conditionHelper';
 import { FC } from 'react';
 
 export type ContentBlockProps = {
@@ -7,18 +7,17 @@ export type ContentBlockProps = {
 };
 
 export const SimpleContentBlock: FC<ContentBlockProps> = ({ title, conditionalValue }) => {
-  let titleClass = 'border border-warning-content w-[20rem]';
-  console.log('SimpleContentBlock conditionalValue', JSON.stringify(conditionalValue, null, 1));
+  let titleClass = 'border border-warning-content';
 
-  const simplifiedConditions = processConditions(conditionalValue);
+  //console.log('SimpleContentBlock conditionalValue', JSON.stringify(conditionalValue, null, 1));
 
-  if (simplifiedConditions?.parameters?.width) {
-    titleClass = `border border-warning-content s:w-[${simplifiedConditions?.parameters?.width?.mobile}rem] md:w-[${simplifiedConditions?.parameters?.width?.tablet}rem] lg:w-[${simplifiedConditions?.parameters?.width?.desktop}rem] visible`;
+  if (conditionalValue?.parametersConditions) {
+    titleClass += ` s:w-[${conditionalValue?.parametersConditions?.mobile?.width}rem] md:w-[${conditionalValue?.parametersConditions?.tablet?.width}rem] lg:w-[${conditionalValue?.parametersConditions?.desktop?.width}rem] visible`;
   }
 
-  if (simplifiedConditions?.visibility) {
-    titleClass += ` ${!simplifiedConditions?.visibility?.mobile ? 's:invisible' : ''} 
-    ${!simplifiedConditions?.visibility?.tablet ? 'md:invisible' : ''} ${!simplifiedConditions?.visibility?.desktop ? 'lg:invisible' : ''} `;
+  if (conditionalValue?.visibilityConditions) {
+    titleClass += ` ${!conditionalValue?.visibilityConditions?.mobile ? 's:invisible' : ''}
+    ${!conditionalValue?.visibilityConditions?.tablet ? 'md:invisible' : ''} ${!conditionalValue?.visibilityConditions?.desktop ? 'lg:invisible' : ''} `;
   }
 
   return (
@@ -27,7 +26,7 @@ export const SimpleContentBlock: FC<ContentBlockProps> = ({ title, conditionalVa
         <div className={titleClass}>
           {title}
           <hr />
-          <pre>{JSON.stringify(simplifiedConditions, null, 2)}</pre>
+          <pre>{JSON.stringify(conditionalValue, null, 1)}</pre>
         </div>
       </div>
     </>

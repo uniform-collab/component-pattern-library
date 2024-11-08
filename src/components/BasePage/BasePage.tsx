@@ -1,19 +1,18 @@
-import { FC, PropsWithChildren, useCallback, useEffect } from 'react';
-import classNames from 'classnames';
 import {
   createUniformApiEnhancer,
   UniformComposition,
   UniformSlot,
   useUniformCurrentComposition,
 } from '@uniformdev/canvas-react';
-import ComponentStarterKitContextProvider from '../../context/ComponentStarterKitContext';
-import UniformPreviewIcon from '../UniformPreviewIcon';
-import ThemeProvider from '../ThemeProvider';
-import { getGapClass, getMarginBottomClass, PaddingSize } from '../../utilities/styling';
-import { CHILDREN_CONTAINER_STYLES, COMMON_PADDING } from '../../hocs/withoutContainer';
-import { BasePageProps } from './';
-import { useSetViewportQuirk } from '@/hooks/useSetViewportQuirk';
 import { useUniformContext } from '@uniformdev/context-react';
+import classNames from 'classnames';
+import { FC, PropsWithChildren, useCallback, useEffect } from 'react';
+import ComponentStarterKitContextProvider from '../../context/ComponentStarterKitContext';
+import { CHILDREN_CONTAINER_STYLES, COMMON_PADDING } from '../../hocs/withoutContainer';
+import { getGapClass, getMarginBottomClass, PaddingSize } from '../../utilities/styling';
+import ThemeProvider from '../ThemeProvider';
+import UniformPreviewIcon from '../UniformPreviewIcon';
+import { BasePageProps } from './';
 
 const PageContent: FC<Pick<BasePageProps, 'preview' | 'useUniformComposition' | 'providers' | 'styles'>> = ({
   useUniformComposition,
@@ -23,7 +22,7 @@ const PageContent: FC<Pick<BasePageProps, 'preview' | 'useUniformComposition' | 
 }) => {
   const { data: composition } = useUniformCurrentComposition();
 
-  const { context } = useUniformContext({ throwOnMissingProvider: false });
+  const { context } = useUniformContext();
 
   useEffect(() => {
     context?.update({
@@ -31,7 +30,7 @@ const PageContent: FC<Pick<BasePageProps, 'preview' | 'useUniformComposition' | 
         viewport: 'tablet',
       },
     });
-  }, []);
+  });
 
   // useSetViewportQuirk();
 
