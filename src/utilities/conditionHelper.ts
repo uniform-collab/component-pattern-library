@@ -41,7 +41,9 @@ const viewportRules = {
 };
 
 export const transformConditions = ({ component }: { component: ComponentInstance }) => {
+  // this is to prevent immutability issues
   setAutoFreeze(false);
+
   let allConditions: SimplifiedConditions = {};
   console.log('component name: ', component?.type);
   if (component?.parameters) {
@@ -84,7 +86,7 @@ const componentHasConditions = (component: ComponentInstance) => {
   return false;
 };
 const evaluateVisibilityRuleForViewport = (viewport: string, criteriaGroup: VisibilityCriteriaGroup) => {
-  const rules = createQuirksVisibilityRule({ viewport });
+  const rules = createQuirksVisibilityRule({ viewport, province: 'ON' });
   return evaluateVisibilityCriteriaGroup({
     rules,
     criteriaGroup,

@@ -1,0 +1,10 @@
+id: viewport
+name: Viewport
+description: ''
+options:
+  - name: Mobile
+    value: mobile
+  - name: Tablet
+    value: tablet
+  - name: Desktop
+    value: desktop

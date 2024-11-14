@@ -1,9 +1,9 @@
 import {
-  CANVAS_PUBLISHED_STATE,
   CANVAS_DRAFT_STATE,
-  RouteClient,
+  CANVAS_PUBLISHED_STATE,
   CanvasClient,
   CategoryClient,
+  RouteClient,
 } from '@uniformdev/canvas';
 import { ProjectMapClient } from '@uniformdev/project-map';
 

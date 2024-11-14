@@ -1,0 +1,40 @@
+id: listOfPatternsBySearch
+displayName: List of patterns by search
+ttl: 30
+body: ''
+path: /composition
+custom:
+  proposedName: composition
+method: GET
+purgeKey: 4fc62f2f-47b3-4591-930a-00823b3c5617
+archetype: default
+variables:
+  limit:
+    type: text
+    default: ''
+  keyword:
+    type: text
+    default: ''
+parameters:
+  - key: resolutionDepth
+    value: '1'
+  - key: diagnostics
+    value: 'false'
+  - key: limit
+    value: ${limit}
+  - key: pattern
+    value: 'true'
+  - key: projectId
+    value: 3bfb7b30-7a79-4fbf-a3ed-316a7b16a990
+  - key: skipEnhance
+    value: 'false'
+  - key: skipPatternResolution
+    value: 'false'
+  - key: state
+    value: '64'
+  - key: withTotalCount
+    value: 'true'
+  - key: search
+    value: ${keyword}
+dataSourceId: uniformGlobal
+allowedOnComponents: []

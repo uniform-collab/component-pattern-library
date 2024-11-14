@@ -1,0 +1,11 @@
+id: singleCharacter
+displayName: Single character
+ttl: 30
+path: /characters/5cf5679a915ecad153ab68cc
+custom:
+  proposedName: characters/5cf5679a915ecad153ab68cc
+method: GET
+purgeKey: d499e40f-5cb4-4681-b00f-82e2adb83fe4
+archetype: default
+dataSourceId: lastAirbenderApi
+allowedOnComponents: []

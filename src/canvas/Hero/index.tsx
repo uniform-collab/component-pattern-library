@@ -1,12 +1,13 @@
-import { FC } from 'react';
-import { ComponentProps, registerUniformComponent } from '@uniformdev/canvas-react';
+import { SimplifiedConditions } from '@/utilities/conditionHelper';
 import type { Asset } from '@uniformdev/assets';
-import { withoutContainer } from '../../hocs/withoutContainer';
+import { ComponentProps, registerUniformComponent } from '@uniformdev/canvas-react';
+import { FC } from 'react';
 import { ContainerProps } from '../../components/Container';
-import { HeroSideImage } from './HeroSideImage';
-import { HeroBackgroundImage } from './HeroBackgroundImage';
-import { HeroTwoColumns } from './HeroTwoColumns';
+import { withoutContainer } from '../../hocs/withoutContainer';
 import { HeroDefault } from './Hero';
+import { HeroBackgroundImage } from './HeroBackgroundImage';
+import { HeroSideImage } from './HeroSideImage';
+import { HeroTwoColumns } from './HeroTwoColumns';
 
 export const DEFAULT_TEXT_COLOR = '#000';
 
@@ -49,6 +50,7 @@ export type HeroProps = ComponentProps<
     delay?: Types.AnimationDelay;
     animationPreview?: boolean;
     styles?: Styles;
+    conditionalValue?: SimplifiedConditions;
   }
 >;
 

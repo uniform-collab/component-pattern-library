@@ -36,7 +36,7 @@ export const getStaticProps = withUniformGetStaticProps({
 
     await enhance({
       composition,
-      // adding a new propertyy to each component called conditionalValue, which can be access from the component props
+      // adding a new propertyy to each component called conditionalValue with the results of processing conditions for each viewport quirk, which can be access from the component props
       enhancers: new EnhancerBuilder().data('conditionalValue', transformConditions),
       context: {
         preview: Boolean(_context.preview),

@@ -1,0 +1,38 @@
+composition:
+  _name: Accordion pattern
+  _id: d87fabde-ea3c-4e7b-87e6-fadac45005b4
+  type: accordion
+  parameters:
+    title:
+      type: text
+      value: 'Name: ${#jptr:/Character/name}'
+    description:
+      type: text
+      value: |-
+        Name:${#jptr:/Character/name}
+        Gender: ${#jptr:/Character/gender}
+        Hair: ${#jptr:/Character/hair}
+  slots:
+    items:
+      - _id: 8cec0c50-24c9-4840-9308-a3e093a034a3
+        type: accordionItem
+        parameters:
+          title:
+            type: text
+            value: Profession
+          description:
+            type: text
+            value: ${#jptr:/Character/profession}
+        _overridability:
+          hideLockedParameters: true
+  _dataResources:
+    Character:
+      type: singleCharacter
+      variables: {}
+      isPatternParameter: true
+      ignorePatternParameterDefault: true
+  _overridability:
+    hideLockedParameters: true
+created: '2024-10-25T02:59:05.448064+00:00'
+modified: '2024-10-25T03:02:35.814652+00:00'
+pattern: true

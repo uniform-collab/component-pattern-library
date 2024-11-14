@@ -1,0 +1,13 @@
+id: 0494a5d8-06db-40e0-9cd7-57b5e5ae1767
+name: Pattern library
+order: 500
+path: /pattern-library
+type: composition
+pathSegment: pattern-library
+data:
+  queryStrings:
+    - name: keyword
+      value: ''
+      helpText: ''
+compositionId: 223a804e-f35a-4e2b-9cee-9af6c6af00bc
+projectMapId: 40535f31-cdc1-4ac3-bb4d-2a008493b431

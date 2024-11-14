@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect } from 'react';
 import { useUniformContext } from '@uniformdev/context-react';
+import { Context } from '@uniformdev/context/*';
+import { useEffect } from 'react';
 
 /**
  * Example hook demonstrating how to live-set a quirk value based on viewport width
@@ -13,9 +14,7 @@ const BREAKPOINTS = {
 };
 
 export function useSetViewportQuirk() {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  const { context } = useUniformContext({ throwOnMissingProvider: false });
+  const { context } = useUniformContext();
   useEffect(() => {
     const debounce = (func: any, delay: any) => {
       let debounceTimer: any;
@@ -28,17 +27,7 @@ export function useSetViewportQuirk() {
     };
 
     const debouncedHandler = debounce(() => {
-      const viewport =
-        window.innerWidth < BREAKPOINTS.mobile
-          ? 'mobile'
-          : window.innerWidth < BREAKPOINTS.tablet
-            ? 'tablet'
-            : 'desktop';
-      context?.update({
-        quirks: {
-          viewport,
-        },
-      });
+      doUpdateQuirk(context);
     }, 50);
 
     debouncedHandler();
@@ -47,4 +36,16 @@ export function useSetViewportQuirk() {
       window.removeEventListener('resize', debouncedHandler);
     };
   }, [context]);
+
+  // default viewport
 }
+
+const doUpdateQuirk = (context: Context) => {
+  const viewport =
+    window.innerWidth < BREAKPOINTS.mobile ? 'mobile' : window.innerWidth < BREAKPOINTS.tablet ? 'tablet' : 'desktop';
+  context?.update({
+    quirks: {
+      viewport,
+    },
+  });
+};

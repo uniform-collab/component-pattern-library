@@ -16,16 +16,23 @@ export const SimpleContentBlock: FC<ContentBlockProps> = ({ title, conditionalVa
   }
 
   if (conditionalValue?.visibilityConditions) {
-    titleClass += ` ${!conditionalValue?.visibilityConditions?.mobile ? 's:invisible' : ''}
-    ${!conditionalValue?.visibilityConditions?.tablet ? 'md:invisible' : ''} ${!conditionalValue?.visibilityConditions?.desktop ? 'lg:invisible' : ''} `;
+    titleClass += `invisible ${!conditionalValue?.visibilityConditions?.mobile ? 's:visible' : ''}
+    ${!conditionalValue?.visibilityConditions?.tablet ? 'md:visible' : ''} ${!conditionalValue?.visibilityConditions?.desktop ? 'lg:visible' : ''} `;
   }
 
   return (
     <>
-      <div className="w-full">
-        <div className={titleClass}>
-          {title}
-          <hr />
+      <div className="border border-info-content">
+        <div className="text-center">
+          <h1>{title}</h1>
+        </div>
+        <div className="w-full">
+          <div className={titleClass}>
+            <p className="s:visible">{conditionalValue?.parametersConditions?.mobile?.title}</p>
+            <p className="md:visible">{conditionalValue?.parametersConditions?.tablet?.title}</p>
+            <p className="lg:visible">{conditionalValue?.parametersConditions?.desktop?.title}</p>
+            <hr />
+          </div>
           <pre>{JSON.stringify(conditionalValue, null, 1)}</pre>
         </div>
       </div>

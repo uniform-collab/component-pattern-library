@@ -1,0 +1,8 @@
+id: province
+name: Province
+description: ''
+options:
+  - name: Ontario
+    value: 'ON'
+  - name: Quebec
+    value: QC

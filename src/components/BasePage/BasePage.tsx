@@ -4,9 +4,9 @@ import {
   UniformSlot,
   useUniformCurrentComposition,
 } from '@uniformdev/canvas-react';
-import { useUniformContext } from '@uniformdev/context-react';
+import { useQuirks } from '@uniformdev/context-react';
 import classNames from 'classnames';
-import { FC, PropsWithChildren, useCallback, useEffect } from 'react';
+import { FC, PropsWithChildren, useCallback } from 'react';
 import ComponentStarterKitContextProvider from '../../context/ComponentStarterKitContext';
 import { CHILDREN_CONTAINER_STYLES, COMMON_PADDING } from '../../hocs/withoutContainer';
 import { getGapClass, getMarginBottomClass, PaddingSize } from '../../utilities/styling';
@@ -22,16 +22,6 @@ const PageContent: FC<Pick<BasePageProps, 'preview' | 'useUniformComposition' | 
 }) => {
   const { data: composition } = useUniformCurrentComposition();
 
-  const { context } = useUniformContext();
-
-  useEffect(() => {
-    context?.update({
-      quirks: {
-        viewport: 'tablet',
-      },
-    });
-  });
-
   // useSetViewportQuirk();
 
   const gap = composition?.slots?.pageHeader?.[0]?.parameters?.syntheticGap?.value as PaddingSize | undefined;
@@ -41,6 +31,10 @@ const PageContent: FC<Pick<BasePageProps, 'preview' | 'useUniformComposition' | 
       Providers ? <Providers styles={{ modal: styles?.modal }}>{children}</Providers> : <>{children}</>,
     [Providers, styles?.modal]
   );
+
+  const { viewport } = useQuirks();
+  const deviceLoaded = viewport ?? false;
+  // const deviceLoaded = true;
 
   return (
     <ThemeProvider>
@@ -61,7 +55,11 @@ const PageContent: FC<Pick<BasePageProps, 'preview' | 'useUniformComposition' | 
             styles?.pageContentContainer
           )}
         >
-          <UniformSlot name="pageContent" />
+          {deviceLoaded ? (
+            <UniformSlot name="pageContent" />
+          ) : (
+            <div className="animate-pulse h-full w-full min-h-screen bg-gray-200">Loading device information...</div>
+          )}
         </div>
         <div className={COMMON_PADDING}>
           <UniformSlot name="pageFooter" />

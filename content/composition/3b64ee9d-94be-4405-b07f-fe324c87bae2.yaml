@@ -1,0 +1,227 @@
+composition:
+  _name: Responsive test
+  _id: 3b64ee9d-94be-4405-b07f-fe324c87bae2
+  _slug: responsive-test
+  type: page
+  parameters:
+    pageTitle:
+      type: text
+      value: Responsiveness
+  slots:
+    pageFooter:
+      - _id: a6f06011-6ce2-4af6-8cdc-b860639723eb
+        type: footer
+        _pattern: 319639e9-4bac-4fb3-8f0b-19088c969fcb
+    pageHeader:
+      - _id: 49134847-7413-482c-90e9-71cc19818ad2
+        type: header
+        _pattern: e46c8336-acfd-43e8-ac59-8be8f4c33b7d
+    pageContent:
+      - _id: 8142cf6e-c5da-487f-93d7-ce1259176228
+        type: simplecontent
+        parameters:
+          $viz:
+            type: $viz
+            value:
+              criteria:
+                clauses:
+                  - op: is
+                    rule: $qk
+                    value: 'ON'
+                    source: province
+          title:
+            type: text
+            value: Only visible in Ontario
+          width:
+            type: number
+            value: '10'
+      - _id: 6528d1be-3c98-4325-a47a-2493b0e57880
+        type: hero
+        parameters:
+          title:
+            type: text
+            value: Default content
+            conditions:
+              - id: 0
+                when:
+                  clauses:
+                    - op: is
+                      rule: $qk
+                      value:
+                        - tablet
+                        - desktop
+                      source: viewport
+                value: We've identified Tablet or Desktop!!!!
+              - id: 1
+                when:
+                  clauses:
+                    - op: is
+                      rule: $qk
+                      value: mobile
+                      source: viewport
+                value: We've identified Mobile
+          titleStyle:
+            type: tp-title-style-parameter
+            value: h1
+          description:
+            type: text
+            value: 'Description '
+          eyebrowText:
+            type: text
+            value: Eyebrow
+      - _id: b7c2f271-904f-4057-811c-e0f732a297d0
+        type: simplecontent
+        parameters:
+          $viz:
+            type: $viz
+            value:
+              criteria:
+                clauses:
+                  - op: is
+                    rule: $qk
+                    value:
+                      - mobile
+                      - tablet
+                    source: viewport
+          title:
+            type: text
+            value: Visibilty for mobile AND tablet
+          width:
+            type: number
+            value: '10'
+            conditions:
+              - id: 0
+                when:
+                  clauses:
+                    - op: is
+                      rule: $qk
+                      value: tablet
+                      source: viewport
+                value: '25'
+      - _id: e39b4001-d539-46ab-9a8c-ef880e0f6a95
+        type: simplecontent
+        parameters:
+          title:
+            type: text
+            value: Single parameter rule NOT mobile
+          width:
+            type: number
+            value: '65'
+            conditions:
+              - id: 0
+                when:
+                  clauses:
+                    - op: '!is'
+                      rule: $qk
+                      value: mobile
+                      source: viewport
+                value: '15'
+      - _id: 8b45d92b-bc58-4dbc-b368-b497f5ceb41c
+        type: simplecontent
+        parameters:
+          title:
+            type: text
+            value: Combined rules is any of Tablet Or Desktop, single rule
+          width:
+            type: number
+            value: '60'
+            conditions:
+              - id: 0
+                when:
+                  clauses:
+                    - op: is
+                      rule: $qk
+                      value:
+                        - tablet
+                        - desktop
+                      source: viewport
+                value: '30'
+      - _id: 8186501d-a9a7-4e7d-a1d5-863575b3f74e
+        type: simplecontent
+        parameters:
+          title:
+            type: text
+            value: Conditional title with Tablet and Desktip match for width
+          width:
+            type: number
+            value: '60'
+            conditions:
+              - id: 0
+                when:
+                  clauses:
+                    - op: is
+                      rule: $qk
+                      value: tablet
+                      source: viewport
+                value: '30'
+              - id: 1
+                when:
+                  clauses:
+                    - op: is
+                      rule: $qk
+                      value: desktop
+                      source: viewport
+                value: '10'
+      - _id: cc91f933-c400-4c52-94fd-f095b53a80b9
+        type: $loop
+        slots:
+          body:
+            - _id: 595652e6-5ff3-487c-b938-1e3d506e9db2
+              type: button
+              parameters:
+                $viz:
+                  type: $viz
+                  value:
+                    criteria:
+                      clauses:
+                        - op: is
+                          rule: $qk
+                          value: tablet
+                          source: viewport
+                copy:
+                  type: text
+                  value: >-
+                    ${#jptr:/Single character Content enemies Loop Item} Visible
+                    only for viewport Tablet
+                animationType:
+                  type: select
+                  value: flyIn
+        _dataResources:
+          Single character Content enemies Loop Item:
+            type: sys-reserved-loop
+            variables:
+              connectedData: '#jptr:/Single character Content/enemies:fa=c'
+      - _id: 46d81d19-df44-4989-9ddc-4f7bd78f62eb
+        type: responsivecontent
+        parameters:
+          title:
+            type: text
+            value: Responsive title
+          titleStyle:
+            type: tp-title-style-parameter
+            value: h1
+          responsiveTitle:
+            type: json
+            value:
+              mobile: 60
+              tablet: 30
+              desktop: 10
+      - _id: 8d767934-154f-42bf-ad30-2a845513ec1c
+        type: breadcrumbs
+        parameters:
+          separator:
+            type: select
+            value: chevron
+          colorStyle:
+            type: tp-color-style-parameter
+            value: primary
+          displayRootNode:
+            type: checkbox
+            value: true
+  _dataResources:
+    Single character Content:
+      type: singleCharacter
+      variables: {}
+created: '2024-11-01T17:33:20.756546+00:00'
+modified: '2024-11-13T15:44:33.014076+00:00'
+pattern: false

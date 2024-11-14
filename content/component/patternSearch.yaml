@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=<https://uniform.app/schemas/json-schema/component-definition/v1.json>
+$schema: https://uniform.app/schemas/json-schema/component-definition/v1.json
+id: patternSearch
+name: Pattern Search
+icon: screen
+parameters: []
+useTeamPermissions: true
+slots: []
+canBeComposition: false
+created: '2024-10-28T19:57:52.337741+00:00'
+updated: '2024-10-28T19:57:52.337741+00:00'

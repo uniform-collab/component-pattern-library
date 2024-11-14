@@ -1,12 +1,12 @@
-import { NextPageContext } from 'next';
 import {
   Context,
-  ManifestV2,
   ContextPlugin,
-  enableDebugConsoleLogDrain,
   enableContextDevTools,
+  enableDebugConsoleLogDrain,
+  ManifestV2,
 } from '@uniformdev/context';
 import { NextCookieTransitionDataStore } from '@uniformdev/context-next';
+import { NextPageContext } from 'next';
 
 import manifest from './manifest.json';
 
@@ -17,6 +17,7 @@ export default function createUniformContext(serverContext?: NextPageContext): C
     manifest: manifest as ManifestV2,
     transitionStore: new NextCookieTransitionDataStore({
       serverContext,
+      experimental_quirksEnabled: true,
     }),
     plugins: plugins,
   });

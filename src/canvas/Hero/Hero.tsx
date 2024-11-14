@@ -1,11 +1,12 @@
-import { FC } from 'react';
-import classNames from 'classnames';
 import { useUniformContextualEditingState } from '@uniformdev/canvas-react';
-import { Container, Description, EyebrowText, PrimaryButton, SecondaryButton, Title } from './atoms';
-import { useHeroAnimation } from './animation';
+import { useQuirks, useUniformContext } from '@uniformdev/context-react';
+import classNames from 'classnames';
+import { FC } from 'react';
 import { AnimationVariant } from '../../components/AnimatedContainer';
-import { DEFAULT_TEXT_COLOR, HeroProps } from './';
 import { REGEX_COLOR_HEX } from '../../utilities';
+import { DEFAULT_TEXT_COLOR, HeroProps } from './';
+import { useHeroAnimation } from './animation';
+import { Container, Description, EyebrowText, PrimaryButton, SecondaryButton, Title } from './atoms';
 import { getHeroTextStyle } from './helpers';
 
 export const HeroDefault: FC<HeroProps> = ({
@@ -37,6 +38,7 @@ export const HeroDefault: FC<HeroProps> = ({
   animationPreview,
   delay = 'none',
   styles,
+  conditionalValue,
 }) => {
   const { previewMode } = useUniformContextualEditingState();
   const isContextualEditing = previewMode === 'editor';
@@ -54,6 +56,9 @@ export const HeroDefault: FC<HeroProps> = ({
     animationPreview,
   });
 
+  const { context } = useUniformContext();
+  const data = useQuirks();
+
   return (
     <Container
       fullHeight={fullHeight}
@@ -65,6 +70,7 @@ export const HeroDefault: FC<HeroProps> = ({
       backgroundType={backgroundColor || backgroundType}
       containerVariant={containerVariant}
     >
+      <p>Is Uniform Context available yet? {context ? 'Yes' : 'No'}</p>
       <div
         className={classNames('hero-content text-center p-0', {
           'h-full items-start pt-20': fullHeight,
@@ -84,12 +90,18 @@ export const HeroDefault: FC<HeroProps> = ({
             delay={getDelayValue(1.5)}
             animationVariant={animationType === 'fadeIn' ? AnimationVariant.FadeIn : AnimationVariant.FadeInTop}
           >
-            <Title
-              titleStyle={titleStyle}
-              useCustomTextElements={useCustomTextElements}
-              title={title}
-              className={styles?.title}
-            />
+            {!conditionalValue && (
+              <Title
+                titleStyle={titleStyle}
+                useCustomTextElements={useCustomTextElements}
+                title={title}
+                className={styles?.title}
+              />
+            )}
+
+            <div className={styles?.title}>{conditionalValue?.parametersConditions?.desktop?.title}</div>
+            <div className={styles?.title}>{conditionalValue?.parametersConditions?.tablet?.title}</div>
+            <div className={styles?.title}>{conditionalValue?.parametersConditions?.mobile?.title}</div>
           </ElementWrapper>
           <ElementWrapper
             duration={duration}
@@ -97,6 +109,7 @@ export const HeroDefault: FC<HeroProps> = ({
             animationVariant={animationType === 'fadeIn' ? AnimationVariant.FadeIn : AnimationVariant.FadeInTop}
           >
             <Description className={styles?.description} />
+            <pre>{JSON.stringify(data, null, 1)}</pre>
           </ElementWrapper>
           <div className={classNames('pb-6', { 'py-6': !description })}>
             {(Boolean(primaryButtonCopy) || isContextualEditing) && (

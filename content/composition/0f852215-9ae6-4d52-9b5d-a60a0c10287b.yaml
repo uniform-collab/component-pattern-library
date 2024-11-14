@@ -1,0 +1,183 @@
+composition:
+  _name: test
+  _id: 0f852215-9ae6-4d52-9b5d-a60a0c10287b
+  _slug: test
+  type: page
+  parameters:
+    pageTitle:
+      type: text
+      value: test
+  slots:
+    pageFooter:
+      - _id: b23f3965-4c96-4a09-b2d5-1e0ec7c47497
+        type: footer
+        _pattern: 319639e9-4bac-4fb3-8f0b-19088c969fcb
+    pageHeader:
+      - _id: 8dd7f9dd-b2ba-43b1-ab4b-b11abbdea125
+        type: header
+        _pattern: e46c8336-acfd-43e8-ac59-8be8f4c33b7d
+    pageContent:
+      - _id: ddabdacb-531a-426b-b778-a31e06ccff24
+        type: $test
+        slots:
+          test:
+            - _id: fa77d1cf-377f-43f1-8578-76e6124e7447
+              type: hero
+              parameters:
+                title:
+                  type: text
+                  value: 'Control test #1'
+                $tstVrnt:
+                  type: testVariant
+                  value:
+                    id: control
+            - _id: 861beb67-3fda-49fd-b243-4135fd193169
+              type: hero
+              variant: backgroundImage
+              parameters:
+                image:
+                  type: asset
+                  value:
+                    - _id: 749a0108-de12-493f-a28d-f9a77e854d30
+                      type: image
+                      fields:
+                        id:
+                          type: text
+                          value: 3c1767ca-1851-4f4f-b8dc-4269d5ea6328
+                        url:
+                          value: >-
+                            https://img.uniform.global/p/O_t7MHp5T7-j7TFqexapkA/eYtDXS2FQVa8aimtoeqKQg-rectangle.webp
+                          type: text
+                        file:
+                          type: file
+                          value: 417f72e5-d0bc-47c8-8633-eb537728e2ec
+                        size:
+                          value: 49092
+                          type: number
+                        title:
+                          type: text
+                          value: rectangle.webp
+                        width:
+                          value: 1600
+                          type: number
+                        height:
+                          value: 689
+                          type: number
+                        mediaType:
+                          value: image/webp
+                          type: text
+                      _source: uniform-assets
+                title:
+                  type: text
+                  value: 'B test #1'
+                $tstVrnt:
+                  type: testVariant
+                  value:
+                    id: b
+                objectFit:
+                  type: select
+                  value: cover
+                textColor:
+                  type: tp-color-palette-parameter
+                  value: primary-content
+                paddingTop:
+                  type: select
+                  value: None
+                titleStyle:
+                  type: tp-title-style-parameter
+                  value: h1
+                description:
+                  type: text
+                  value: Some page description
+                eyebrowText:
+                  type: text
+                  value: eyebrow text
+                paddingBottom:
+                  type: select
+                  value: None
+                containerVariant:
+                  type: select
+                  value: fluidContent
+        parameters:
+          test:
+            type: testSelect
+            value: test1
+      - _id: ddf54fb4-bb9a-457b-9624-a1dea7f67474
+        type: $test
+        slots:
+          test:
+            - _id: f4437b69-ce3e-4287-b021-5a6f1e2955c0
+              type: text
+              parameters:
+                text:
+                  type: text
+                  value: 'B test #2'
+                $tstVrnt:
+                  type: testVariant
+                  value:
+                    id: b
+                    testDistribution: 80
+            - _id: 9a701d68-7c12-433f-a761-6dc45dc8de58
+              type: text
+              parameters:
+                text:
+                  type: text
+                  value: 'Control test #2'
+                $tstVrnt:
+                  type: testVariant
+                  value:
+                    id: control
+                    testDistribution: 20
+        parameters:
+          test:
+            type: testSelect
+            value: test2
+      - _id: f73b237d-75eb-4950-85c5-842a7bf70f4e
+        type: $test
+        slots:
+          test:
+            - _id: 4f4a5219-bf7d-4efa-8dc2-2a95a7e1db33
+              type: text
+              parameters:
+                text:
+                  type: text
+                  value: A
+            - _id: 899c20e0-04d6-4bc5-b7aa-1bbe4f7efb68
+              type: text
+              parameters:
+                text:
+                  type: text
+                  value: B
+                $tstVrnt:
+                  type: testVariant
+                  value:
+                    testDistribution: 10
+            - _id: 408c9fa6-b9b0-45ba-bdc0-4a1c8531f2c2
+              type: text
+              parameters:
+                text:
+                  type: text
+                  value: C
+                $tstVrnt:
+                  type: testVariant
+                  value:
+                    id: D
+        parameters:
+          test:
+            type: testSelect
+            value: test3
+      - _id: 6a1cc865-28d6-44dd-ad6e-efc37fbd5e68
+        type: breadcrumbs
+        parameters:
+          separator:
+            type: select
+            value: chevron
+          colorStyle:
+            type: tp-color-style-parameter
+            value: primary
+          displayRootNode:
+            type: checkbox
+            value: true
+created: '2024-10-31T02:41:40.333366+00:00'
+modified: '2024-10-31T02:59:06.465666+00:00'
+pattern: false
